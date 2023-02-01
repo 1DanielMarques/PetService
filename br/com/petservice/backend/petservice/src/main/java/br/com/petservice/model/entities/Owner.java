@@ -1,5 +1,6 @@
 package br.com.petservice.model.entities;
 
+import br.com.petservice.model.annotations.PhoneLength;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,9 +25,11 @@ public class Owner implements Serializable {
     private String name;
 
     @Column(length = 11)
+    @PhoneLength
     private String main_phone;
 
     @Column(length = 11)
+    @PhoneLength
     private String emergency_phone;
 
 }
