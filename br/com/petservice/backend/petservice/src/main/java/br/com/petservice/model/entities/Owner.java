@@ -24,11 +24,11 @@ public class Owner implements Serializable {
     @Column(length = 50)
     private String name;
 
-    @Column(length = 11)
+   // @Column(length = 11)
     @PhoneLength
     private String main_phone;
 
-    @Column(length = 11)
+    //@Column(length = 11)
     @PhoneLength
     private String emergency_phone;
 

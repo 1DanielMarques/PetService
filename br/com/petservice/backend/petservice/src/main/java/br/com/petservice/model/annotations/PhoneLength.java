@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = PhoneLengthValidator.class)
 public @interface PhoneLength {
 
-    String message() default "Numero de contato inválido.";
+    String message() default "Phone number must have 11 digits.";
 
     Class<?>[] groups() default {};
 
