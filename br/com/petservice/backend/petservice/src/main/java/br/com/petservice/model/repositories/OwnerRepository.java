@@ -1,8 +1,8 @@
 package br.com.petservice.model.repositories;
 
-import br.com.petservice.model.entities.Owner;
+import br.com.petservice.model.entities.OwnerDatabaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface OwnerRepository extends JpaRepository<Owner,Long> {
+public interface OwnerRepository extends JpaRepository<OwnerDatabaseEntity,Long> {
 }

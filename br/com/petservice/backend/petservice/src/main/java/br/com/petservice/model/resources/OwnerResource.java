@@ -1,6 +1,6 @@
 package br.com.petservice.model.resources;
 
-import br.com.petservice.model.entities.Owner;
+import br.com.petservice.model.entities.OwnerDatabaseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OwnerResource {
 
     @PostMapping
-    public String insert(@RequestBody @Validated Owner owner){
-        return "a";
+     String insert(@RequestBody @Validated OwnerDatabaseEntity owner){
+        return "OK";
     }
 
 }
