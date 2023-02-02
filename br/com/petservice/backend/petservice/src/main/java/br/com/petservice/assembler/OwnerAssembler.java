@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class OwnerAssembler {
 
     public OwnerEntity toOwnerEntity(OwnerDTO ownerDTO) {
-        return new OwnerEntity(null, ownerDTO.getName(), ownerDTO.getMainPhone(), ownerDTO.getEmergencyPhone());
+        return new OwnerEntity(null, ownerDTO.name(), ownerDTO.mainPhone(), ownerDTO.emergencyPhone());
     }
 
     public OwnerDTO toOwnerDTO(OwnerEntity ownerEntity) {
