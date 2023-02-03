@@ -1,6 +1,6 @@
-package br.com.petservice.dto;
+package br.com.petservice.infra.dto;
 
-import br.com.petservice.annotations.PhoneLength;
+import br.com.petservice.infra.annotations.PhoneLength;
 
 
 

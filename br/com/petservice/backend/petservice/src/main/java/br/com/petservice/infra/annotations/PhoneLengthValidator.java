@@ -1,4 +1,4 @@
-package br.com.petservice.annotations;
+package br.com.petservice.infra.annotations;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

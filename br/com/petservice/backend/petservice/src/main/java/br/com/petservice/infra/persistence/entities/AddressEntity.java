@@ -1,4 +1,4 @@
-package br.com.petservice.entities;
+package br.com.petservice.infra.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Address implements Serializable {
+public class AddressEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

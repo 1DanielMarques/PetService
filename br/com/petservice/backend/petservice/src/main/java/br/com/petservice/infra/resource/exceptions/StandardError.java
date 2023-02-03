@@ -1,4 +1,4 @@
-package br.com.petservice.resources.exceptions;
+package br.com.petservice.infra.resource.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package br.com.petservice.entities;
+package br.com.petservice.infra.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ public class OwnerEntity implements Serializable {
     private String emergencyPhone;
 
     @OneToOne
-    private Address address;
+    private AddressEntity address;
 
 
 }
