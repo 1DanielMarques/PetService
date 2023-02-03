@@ -1,5 +1,6 @@
 package br.com.petservice.infra.persistence.entities;
 
+import br.com.petservice.domain.model.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,5 +29,9 @@ public class AddressEntity implements Serializable {
 
     @Column(length = 5)
     private int houseNumber;
+
+    public Address toAddress() {
+        return new Address(this.getId(), this.getStreet(), this.getDistrict(), this.getHouseNumber());
+    }
 
 }
