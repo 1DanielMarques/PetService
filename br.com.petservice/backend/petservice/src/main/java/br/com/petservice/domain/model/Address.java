@@ -1,12 +1,19 @@
 package br.com.petservice.domain.model;
 
-import br.com.petservice.infra.persistence.entities.AddressEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record Address(Long id, String street, String district, int houseNumber) {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Address {
+
+    private Long id;
+    private String street;
+    private String district;
+    private int houseNumber;
 
 
-    public AddressEntity toAddressEntity() {
-        return new AddressEntity(this.id, this.street, this.district, this.houseNumber);
-    }
 
 }

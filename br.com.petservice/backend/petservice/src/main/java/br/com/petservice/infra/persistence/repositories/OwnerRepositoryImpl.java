@@ -8,11 +8,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OwnerRepositoryImpl implements OwnerRepository {
 
-    private final OwnerInMemoryRepository repository;
+    private final InMemoryRepository<OwnerEntity> repository;
 
     @Override
     public Owner save(Owner owner) {
-        return repository.save(OwnerEntity.createFromOwner(owner)).toOwner();
+        return repository.save(OwnerEntity.createFromOwner(owner)).toOwnerFromOwner(owner);
     }
 
 }

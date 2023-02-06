@@ -43,21 +43,20 @@ public class OwnerEntity implements Serializable {
     private AddressEntity address;
 
     public static OwnerEntity createFromOwner(Owner owner) {
-        OwnerEntity ownerEntity = new OwnerEntity();
-        ownerEntity.updateData(owner);
-        return ownerEntity;
+        return new OwnerEntity(null, owner.getName(), owner.getMainPhone(), owner.getEmergencyPhone(), AddressEntity.crateFromAddress(owner.getAddress()));
     }
 
-    public Owner toOwner() {
-        return new Owner(null, this.getName(), this.getMainPhone(), this.getEmergencyPhone(), this.getAddress().toAddress());
+    public Owner toOwnerFromOwner(Owner owner) {
+        updateOwnerData(owner);
+        return owner;
     }
 
-    private void updateData(Owner owner) {
-        this.setName(owner.getName());
-        this.setMainPhone(owner.getMainPhone());
-        this.setEmergencyPhone(owner.getEmergencyPhone());
-        this.setAddress(owner.getAddress().toAddressEntity());
+    private void updateOwnerData(Owner owner) {
+        owner.setId(this.getId());
+        owner.setName(this.getName());
+        owner.setMainPhone(this.getMainPhone());
+        owner.setEmergencyPhone(this.getEmergencyPhone());
+        owner.setAddress(this.getAddress().toAddressFromEntity());
     }
-
 
 }

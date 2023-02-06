@@ -1,11 +1,8 @@
 package br.com.petservice.infra.resource.controllers;
 
 import br.com.petservice.domain.model.Owner;
-import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
-import br.com.petservice.infra.resource.assembler.OwnerAssembler;
 import br.com.petservice.infra.dto.OwnerDTO;
-import br.com.petservice.infra.persistence.entities.OwnerEntity;
-import br.com.petservice.infra.persistence.repositories.OwnerRepository;
+import br.com.petservice.infra.resource.assembler.OwnerAssembler;
 import br.com.petservice.infra.services.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

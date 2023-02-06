@@ -21,8 +21,8 @@ public class OwnerAssembler {
                 owner.getName(),
                 owner.getMainPhone(),
                 owner.getEmergencyPhone(),
-                owner.getAddress().street(),
-                owner.getAddress().district(),
-                owner.getAddress().houseNumber());
+                owner.getAddress().getStreet(),
+                owner.getAddress().getDistrict(),
+                owner.getAddress().getHouseNumber());
     }
 }
