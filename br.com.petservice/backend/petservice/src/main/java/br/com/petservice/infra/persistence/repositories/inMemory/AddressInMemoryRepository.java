@@ -1,4 +1,4 @@
-package br.com.petservice.infra.persistence.repositories;
+package br.com.petservice.infra.persistence.repositories.inMemory;
 
 import br.com.petservice.infra.persistence.entities.AddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
