@@ -5,6 +5,8 @@ import br.com.petservice.infra.persistence.entities.OwnerEntity;
 import br.com.petservice.infra.persistence.repositories.inMemory.OwnerInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 public class OwnerRepositoryImpl implements ObjectRepository {
@@ -14,6 +16,11 @@ public class OwnerRepositoryImpl implements ObjectRepository {
     @Override
     public Owner save(Object owner) {
         return repository.save(OwnerEntity.createFromOwner((Owner) owner)).toOwnerFromOwner((Owner) owner);
+    }
+
+    @Override
+    public List<Object> findAll() {
+        return (List)repository.findAll();
     }
 
 }
