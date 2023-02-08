@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_owner")
-@NoArgsConstructor
 @AllArgsConstructor
 public class OwnerEntity implements Serializable {
 

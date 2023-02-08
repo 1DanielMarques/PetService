@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_address")
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class AddressEntity implements Serializable {
