@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,15 +24,19 @@ public class OwnerService {
     }
 
     public List<Owner> findAll() {
-        List<OwnerEntity> ownerEntityList = new ArrayList<>();
-        for (Object object : ownerRepository.findAll()) {
-            OwnerEntity ownerEntity = OwnerEntity.class.cast(object);
-            ownerEntityList.add(ownerEntity);
-        }
-        List<Owner> ownerList = new ArrayList<>();
-        for (OwnerEntity ownerEntity : ownerEntityList) {
-            ownerList.add(new Owner(ownerEntity.getId(), ownerEntity.getName(), ownerEntity.getMainPhone(), ownerEntity.getEmergencyPhone(), ownerEntity.getAddress().toAddressFromEntity()));
-        }
+        List<Owner> ownerList = getAllOwners();
         return ownerList;
+    }
+
+    private List<Owner> getAllOwners() {
+        return ownerRepository.findAll()
+                .stream()
+                .map(object -> OwnerEntity.class.cast(object))
+                .map(entity -> new Owner(entity.getId(),
+                        entity.getName(),
+                        entity.getMainPhone(),
+                        entity.getEmergencyPhone(),
+                        entity.getAddress().toAddressFromEntity())).
+                collect(Collectors.toList());
     }
 }
