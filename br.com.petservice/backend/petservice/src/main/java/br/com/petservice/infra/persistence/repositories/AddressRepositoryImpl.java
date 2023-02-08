@@ -5,8 +5,6 @@ import br.com.petservice.infra.persistence.entities.AddressEntity;
 import br.com.petservice.infra.persistence.repositories.inMemory.AddressInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 public class AddressRepositoryImpl implements ObjectRepository {
 
@@ -17,9 +15,6 @@ public class AddressRepositoryImpl implements ObjectRepository {
         return repository.save(AddressEntity.crateFromAddress((Address) address)).toAddressFromAddress((Address) address);
     }
 
-    @Override
-    public List<Object> findAll() {
-        return null;
-    }
+
 
 }

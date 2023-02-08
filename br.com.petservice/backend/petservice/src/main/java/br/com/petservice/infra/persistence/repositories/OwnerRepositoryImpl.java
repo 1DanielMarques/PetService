@@ -18,7 +18,6 @@ public class OwnerRepositoryImpl implements ObjectRepository {
         return repository.save(OwnerEntity.createFromOwner((Owner) owner)).toOwnerFromOwner((Owner) owner);
     }
 
-    @Override
     public List<Object> findAll() {
         return (List)repository.findAll();
     }

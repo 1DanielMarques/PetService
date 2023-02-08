@@ -6,6 +6,5 @@ public interface ObjectRepository {
 
     Object save(Object object);
 
-    List<Object> findAll();
 
 }
