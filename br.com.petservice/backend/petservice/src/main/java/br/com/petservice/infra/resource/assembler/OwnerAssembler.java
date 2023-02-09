@@ -2,9 +2,12 @@ package br.com.petservice.infra.resource.assembler;
 
 import br.com.petservice.domain.model.Address;
 import br.com.petservice.domain.model.Owner;
+import br.com.petservice.domain.model.Pet;
 import br.com.petservice.infra.dto.OwnerDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalTime;
 
 @Component
 @RequiredArgsConstructor
@@ -13,7 +16,8 @@ public class OwnerAssembler {
 
     public Owner toOwner(OwnerDTO ownerDTO) {
         Address address = new Address(null, ownerDTO.street(), ownerDTO.district(), ownerDTO.houseNumber());
-        return new Owner(null, ownerDTO.name(), ownerDTO.mainPhone(), ownerDTO.emergencyPhone(), address);
+        Pet pet = new Pet(null, ownerDTO.petName(), ownerDTO.breed(), ownerDTO.dailyTimesToEat(), LocalTime.parse(ownerDTO.timeToEat()), ownerDTO.observation());
+        return new Owner(null, ownerDTO.ownerName(), ownerDTO.mainPhone(), ownerDTO.emergencyPhone(), address, pet);
     }
 
     public OwnerDTO toOwnerDTO(Owner owner) {
@@ -23,6 +27,12 @@ public class OwnerAssembler {
                 owner.getEmergencyPhone(),
                 owner.getAddress().getStreet(),
                 owner.getAddress().getDistrict(),
-                owner.getAddress().getHouseNumber());
+                owner.getAddress().getHouseNumber(),
+                owner.getPet().getName(),
+                owner.getPet().getBreed(),
+                owner.getPet().getDailyTimesToEat(),
+                owner.getPet().getTimeToEat().toString(),
+                owner.getPet().getObservation()
+        );
     }
 }

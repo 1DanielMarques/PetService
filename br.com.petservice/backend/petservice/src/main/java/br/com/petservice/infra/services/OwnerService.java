@@ -4,6 +4,7 @@ import br.com.petservice.domain.model.Owner;
 import br.com.petservice.infra.persistence.entities.OwnerEntity;
 import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
 import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
+import br.com.petservice.infra.persistence.repositories.PetRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,11 @@ public class OwnerService {
 
     private final OwnerRepositoryImpl ownerRepository;
     private final AddressRepositoryImpl addressRepository;
+    private final PetRepositoryImpl petRepository;
 
     public Owner insert(Owner owner) {
         owner.setAddress(addressRepository.save(owner.getAddress()));
+        owner.setPet(petRepository.save(owner.getPet()));
         return ownerRepository.save(owner);
     }
 
@@ -35,7 +38,7 @@ public class OwnerService {
                         entity.getName(),
                         entity.getMainPhone(),
                         entity.getEmergencyPhone(),
-                        entity.getAddress().toAddressFromEntity())).
+                        entity.getAddress().toAddressFromEntity(), entity.getPet().toPetFromEntity())).
                 collect(Collectors.toList());
     }
 }

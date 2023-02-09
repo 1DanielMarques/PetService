@@ -1,7 +1,6 @@
 package br.com.petservice.infra.persistence.entities;
 
 import br.com.petservice.domain.model.Owner;
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,8 +42,13 @@ public class OwnerEntity implements Serializable {
     @Setter
     private AddressEntity address;
 
+    @OneToOne
+    @Getter
+    @Setter
+    private PetEntity pet;
+
     public static OwnerEntity createFromOwner(Owner owner) {
-        return new OwnerEntity(null, owner.getName(), owner.getMainPhone(), owner.getEmergencyPhone(), AddressEntity.crateFromAddress(owner.getAddress()));
+        return new OwnerEntity(null, owner.getName(), owner.getMainPhone(), owner.getEmergencyPhone(), AddressEntity.crateFromAddress(owner.getAddress()), PetEntity.createFromPet(owner.getPet()));
     }
 
     public Owner toOwnerFromOwner(Owner owner) {
@@ -58,6 +62,7 @@ public class OwnerEntity implements Serializable {
         owner.setMainPhone(this.getMainPhone());
         owner.setEmergencyPhone(this.getEmergencyPhone());
         owner.setAddress(this.getAddress().toAddressFromEntity());
+        owner.setPet(this.getPet().toPetFromEntity());
     }
 
 }

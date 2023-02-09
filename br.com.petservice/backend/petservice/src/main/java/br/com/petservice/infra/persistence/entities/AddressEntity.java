@@ -1,9 +1,11 @@
 package br.com.petservice.infra.persistence.entities;
 
 import br.com.petservice.domain.model.Address;
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
