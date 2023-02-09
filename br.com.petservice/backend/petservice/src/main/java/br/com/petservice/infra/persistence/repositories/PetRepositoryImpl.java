@@ -1,6 +1,7 @@
 package br.com.petservice.infra.persistence.repositories;
 
 import br.com.petservice.domain.model.Pet;
+import br.com.petservice.infra.persistence.entities.PetEntity;
 import br.com.petservice.infra.persistence.repositories.inMemory.PetInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -11,7 +12,7 @@ public class PetRepositoryImpl implements ObjectRepository {
 
     @Override
     public Pet save(Object pet) {
-        return null;
+        return repository.save(PetEntity.createFromPet((Pet) pet)).toPetFromPet((Pet) pet);
     }
 
 }

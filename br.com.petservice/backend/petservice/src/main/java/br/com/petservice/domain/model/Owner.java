@@ -13,6 +13,5 @@ public class Owner {
     private String mainPhone;
     private String emergencyPhone;
     private Address address;
-
-    //private Pet pet;
+    private Pet pet;
 }

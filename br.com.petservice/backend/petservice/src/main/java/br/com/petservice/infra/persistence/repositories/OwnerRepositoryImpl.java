@@ -19,7 +19,7 @@ public class OwnerRepositoryImpl implements ObjectRepository {
     }
 
     public List<Object> findAll() {
-        return (List)repository.findAll();
+        return (List) repository.findAll();
     }
 
 }

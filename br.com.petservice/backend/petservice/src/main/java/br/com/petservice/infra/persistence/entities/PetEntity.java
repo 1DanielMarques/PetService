@@ -1,6 +1,6 @@
 package br.com.petservice.infra.persistence.entities;
 
-import jakarta.persistence.Entity;
+import br.com.petservice.domain.model.Pet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,4 +39,29 @@ public class PetEntity {
     @Getter
     @Setter
     private String observation;
+
+
+    public static PetEntity createFromPet(Pet pet) {
+        return new PetEntity(pet.getId(), pet.getName(), pet.getBreed(), pet.getDailyTimesToEat(), pet.getTimeToEat(), pet.getObservation());
+    }
+
+    public Pet toPetFromEntity() {
+        return new Pet(this.getId(), this.getName(), this.getBreed(), this.getDailyTimesToEat(), this.getTimeToEat(), this.getObservation());
+    }
+
+    public Pet toPetFromPet(Pet pet) {
+        updatePetData(pet);
+        return pet;
+    }
+
+    private void updatePetData(Pet pet) {
+        pet.setId(this.getId());
+        pet.setName(this.getName());
+        pet.setBreed(this.getBreed());
+        pet.setDailyTimesToEat(this.getDailyTimesToEat());
+        pet.setTimeToEat(this.getTimeToEat());
+        pet.setObservation(this.getObservation());
+
+    }
+
 }
