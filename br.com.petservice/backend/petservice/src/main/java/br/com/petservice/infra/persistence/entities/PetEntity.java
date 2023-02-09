@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_pet")
@@ -34,7 +35,7 @@ public class PetEntity {
 
     @Getter
     @Setter
-    private LocalTime timeToEat;
+    private List<LocalTime> timeToEat;
 
     @Getter
     @Setter

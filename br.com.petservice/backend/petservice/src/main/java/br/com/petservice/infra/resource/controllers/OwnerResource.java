@@ -34,7 +34,7 @@ public class OwnerResource {
                         owner.getPet().getName(),
                         owner.getPet().getBreed(),
                         owner.getPet().getDailyTimesToEat(),
-                        owner.getPet().getTimeToEat().toString(),
+                        owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
                         owner.getPet().getObservation())).collect(Collectors.toList());
         return ResponseEntity.ok().body(ownerDTOList);
     }

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -16,7 +17,13 @@ public class OwnerAssembler {
 
     public Owner toOwner(OwnerDTO ownerDTO) {
         Address address = new Address(null, ownerDTO.street(), ownerDTO.district(), ownerDTO.houseNumber());
-        Pet pet = new Pet(null, ownerDTO.petName(), ownerDTO.breed(), ownerDTO.dailyTimesToEat(), LocalTime.parse(ownerDTO.timeToEat()), ownerDTO.observation());
+        Pet pet = new Pet(null, ownerDTO.petName(),
+                ownerDTO.breed(),
+                ownerDTO.dailyTimesToEat(),
+                ownerDTO.timeToEat()
+                        .stream()
+                        .map(time -> LocalTime.parse(time)).collect(Collectors.toList()),
+                ownerDTO.observation());
         return new Owner(null, ownerDTO.ownerName(), ownerDTO.mainPhone(), ownerDTO.emergencyPhone(), address, pet);
     }
 
@@ -31,7 +38,7 @@ public class OwnerAssembler {
                 owner.getPet().getName(),
                 owner.getPet().getBreed(),
                 owner.getPet().getDailyTimesToEat(),
-                owner.getPet().getTimeToEat().toString(),
+                owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
                 owner.getPet().getObservation()
         );
     }

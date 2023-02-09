@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Data
@@ -13,7 +14,7 @@ public class Pet {
     private String name;
     private String breed;
     private int dailyTimesToEat;
-    private LocalTime timeToEat;
+    private List<LocalTime> timeToEat;
     private String observation;
 
 }

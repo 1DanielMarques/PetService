@@ -2,6 +2,8 @@ package br.com.petservice.infra.dto;
 
 import br.com.petservice.infra.annotations.PhoneLength;
 
+import java.util.List;
+
 
 public record OwnerDTO(Long id,
                        String ownerName,
@@ -12,7 +14,7 @@ public record OwnerDTO(Long id,
                        String petName,
                        String breed,
                        int dailyTimesToEat,
-                       String timeToEat,
+                       List<String> timeToEat,
                        String observation) {
 }
 

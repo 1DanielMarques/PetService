@@ -28,8 +28,8 @@ public class Initialization implements CommandLineRunner {
         AddressEntity address2 = new AddressEntity(null, "Test 2", "Test 2", 2);
         addressRepository.saveAll(Arrays.asList(address1, address2));
 
-        PetEntity pet1 = new PetEntity(null, "Pet 1", "Raca 1", 4, LocalTime.now(), "Nothing 1");
-        PetEntity pet2 = new PetEntity(null, "Pet 2", "Raca 2", 5, LocalTime.now(), "Nothing 2");
+        PetEntity pet1 = new PetEntity(null, "Pet 1", "Raca 1", 4, Arrays.asList(LocalTime.now()), "Nothing 1");
+        PetEntity pet2 = new PetEntity(null, "Pet 2", "Raca 2", 5, Arrays.asList(LocalTime.now()), "Nothing 2");
         petRepository.saveAll(Arrays.asList(pet1, pet2));
 
         OwnerEntity owner1 = new OwnerEntity(null, "Daniel", "123", "456", address1, pet1);
