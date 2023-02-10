@@ -27,4 +27,10 @@ public class OwnerResource {
         return ResponseEntity.ok().body(service.findAll());
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<OwnerDTO> findById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok().body(service.findById(id));
+
+    }
+
 }
