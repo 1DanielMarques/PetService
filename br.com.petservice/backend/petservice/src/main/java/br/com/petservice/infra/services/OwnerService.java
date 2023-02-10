@@ -1,10 +1,12 @@
 package br.com.petservice.infra.services;
 
 import br.com.petservice.domain.model.Owner;
+import br.com.petservice.infra.dto.OwnerDTO;
 import br.com.petservice.infra.persistence.entities.OwnerEntity;
 import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
 import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
 import br.com.petservice.infra.persistence.repositories.PetRepositoryImpl;
+import br.com.petservice.infra.resource.assembler.OwnerAssembler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +20,21 @@ public class OwnerService {
     private final OwnerRepositoryImpl ownerRepository;
     private final AddressRepositoryImpl addressRepository;
     private final PetRepositoryImpl petRepository;
+    private final OwnerAssembler assembler;
 
-    public Owner insert(Owner owner) {
+    public OwnerDTO insert(OwnerDTO ownerDTO) {
+        Owner owner = assembler.toOwner(ownerDTO);
         owner.setAddress(addressRepository.save(owner.getAddress()));
         owner.setPet(petRepository.save(owner.getPet()));
-        return ownerRepository.save(owner);
+        ownerRepository.save(owner);
+        return assembler.toOwnerDTO(owner);
     }
 
     public List<Owner> findAll() {
         List<Owner> ownerList = getAllOwners();
         return ownerList;
     }
+
 
     private List<Owner> getAllOwners() {
         return ownerRepository.findAll()

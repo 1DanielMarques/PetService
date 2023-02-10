@@ -17,8 +17,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OwnerResource {
 
-    private final OwnerAssembler assembler;
     private final OwnerService service;
+
+    @PostMapping
+    ResponseEntity<OwnerDTO> insert(@RequestBody @Validated OwnerDTO requestDTO) {
+        OwnerDTO ownerDTO = service.insert(requestDTO);
+        return ResponseEntity.ok().body(ownerDTO);
+    }
 
     @GetMapping
     ResponseEntity<List<OwnerDTO>> findAll() {
@@ -37,12 +42,6 @@ public class OwnerResource {
                         owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
                         owner.getPet().getObservation())).collect(Collectors.toList());
         return ResponseEntity.ok().body(ownerDTOList);
-    }
-
-    @PostMapping
-    ResponseEntity<OwnerDTO> insert(@RequestBody @Validated OwnerDTO ownerDTO) {
-        Owner owner = service.insert(assembler.toOwner(ownerDTO));
-        return ResponseEntity.ok().body(assembler.toOwnerDTO(owner));
     }
 
 }
