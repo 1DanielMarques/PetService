@@ -30,9 +30,21 @@ public class OwnerService {
         return assembler.toOwnerDTO(owner);
     }
 
-    public List<Owner> findAll() {
-        List<Owner> ownerList = getAllOwners();
-        return ownerList;
+    public List<OwnerDTO> findAll() {
+        List<OwnerDTO> ownerDTOList = getAllOwners().stream()
+                .map(owner -> new OwnerDTO(owner.getId(),
+                        owner.getName(),
+                        owner.getMainPhone(),
+                        owner.getEmergencyPhone(),
+                        owner.getAddress().getStreet(),
+                        owner.getAddress().getDistrict(),
+                        owner.getAddress().getHouseNumber(),
+                        owner.getPet().getName(),
+                        owner.getPet().getBreed(),
+                        owner.getPet().getDailyTimesToEat(),
+                        owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
+                        owner.getPet().getObservation())).collect(Collectors.toList());
+        return ownerDTOList;
     }
 
 
