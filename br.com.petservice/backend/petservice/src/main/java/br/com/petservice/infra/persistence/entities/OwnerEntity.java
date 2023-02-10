@@ -56,6 +56,14 @@ public class OwnerEntity implements Serializable {
         return owner;
     }
 
+    public Owner toOwnerFromEntity() {
+        return new Owner(this.getId(),
+                this.getName(),
+                this.getMainPhone(),
+                this.getEmergencyPhone(),
+                this.getAddress().toAddressFromEntity(), this.getPet().toPetFromEntity());
+    }
+
     private void updateOwnerData(Owner owner) {
         owner.setId(this.getId());
         owner.setName(this.getName());

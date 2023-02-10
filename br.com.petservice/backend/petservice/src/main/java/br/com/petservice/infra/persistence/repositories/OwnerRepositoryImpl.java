@@ -22,4 +22,8 @@ public class OwnerRepositoryImpl implements ObjectRepository {
         return (List) repository.findAll();
     }
 
+    public Owner findById(Long id) {
+        return repository.findById(id).get().toOwnerFromEntity();
+    }
+
 }

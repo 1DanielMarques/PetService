@@ -47,16 +47,16 @@ public class OwnerService {
         return ownerDTOList;
     }
 
+    public OwnerDTO findById(Long id) {
+        return assembler.toOwnerDTO(ownerRepository.findById(id));
+    }
+
 
     private List<Owner> getAllOwners() {
         return ownerRepository.findAll()
                 .stream()
                 .map(object -> OwnerEntity.class.cast(object))
-                .map(entity -> new Owner(entity.getId(),
-                        entity.getName(),
-                        entity.getMainPhone(),
-                        entity.getEmergencyPhone(),
-                        entity.getAddress().toAddressFromEntity(), entity.getPet().toPetFromEntity())).
+                .map(entity -> entity.toOwnerFromEntity()).
                 collect(Collectors.toList());
     }
 }
