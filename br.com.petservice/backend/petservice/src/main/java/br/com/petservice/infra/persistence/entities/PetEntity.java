@@ -21,14 +21,17 @@ public class PetEntity {
     @Getter
     private Long id;
 
+    @Column(length = 20)
     @Getter
     @Setter
     private String name;
 
+    @Column(length = 30)
     @Getter
     @Setter
     private String breed;
 
+    @Column(length = 3)
     @Getter
     @Setter
     private int dailyTimesToEat;
@@ -36,7 +39,7 @@ public class PetEntity {
     @Getter
     @Setter
     private List<LocalTime> timeToEat;
-
+    @Column(length = 255)
     @Getter
     @Setter
     private String observation;
