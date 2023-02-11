@@ -39,5 +39,11 @@ public class OwnerResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<OwnerDTO> updateById(@PathVariable(value = "id") Long id){
+
+        return null;
+    }
+
 
 }
