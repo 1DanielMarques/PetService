@@ -15,4 +15,9 @@ public class PetRepositoryImpl implements ObjectRepository {
         return repository.save(PetEntity.createFromPet((Pet) pet)).toPetFromPet((Pet) pet);
     }
 
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
 }

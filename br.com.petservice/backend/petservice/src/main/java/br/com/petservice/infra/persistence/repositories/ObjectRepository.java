@@ -4,5 +4,7 @@ public interface ObjectRepository {
 
     Object save(Object object);
 
+    void delete(Long id);
+
 
 }

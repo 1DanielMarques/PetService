@@ -59,4 +59,9 @@ public class OwnerService {
                 .map(entity -> entity.toOwnerFromEntity()).
                 collect(Collectors.toList());
     }
+
+
+    public void deleteById(Long id){
+
+    }
 }

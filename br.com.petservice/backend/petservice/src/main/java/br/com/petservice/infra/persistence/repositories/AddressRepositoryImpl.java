@@ -15,5 +15,10 @@ public class AddressRepositoryImpl implements ObjectRepository {
         return repository.save(AddressEntity.crateFromAddress((Address) address)).toAddressFromAddress((Address) address);
     }
 
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
 
 }
