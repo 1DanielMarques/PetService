@@ -61,7 +61,12 @@ public class OwnerService {
     }
 
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
+        Long petId = ownerRepository.findById(id).getPet().getId();
+        Long addressId = ownerRepository.findById(id).getAddress().getId();
+        ownerRepository.delete(id);
+        petRepository.delete(petId);
+        addressRepository.delete(addressId);
 
     }
 }
