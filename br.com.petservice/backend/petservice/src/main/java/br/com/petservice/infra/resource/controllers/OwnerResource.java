@@ -40,9 +40,9 @@ public class OwnerResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<OwnerDTO> updateById(@PathVariable(value = "id") Long id){
-
-        return null;
+    public ResponseEntity<OwnerDTO> updateById(@PathVariable(value = "id") Long id, @RequestBody @Validated OwnerDTO requestDTO) {
+        OwnerDTO ownerDTO = service.updateById(id,requestDTO);
+        return ResponseEntity.ok().body(ownerDTO);
     }
 
 

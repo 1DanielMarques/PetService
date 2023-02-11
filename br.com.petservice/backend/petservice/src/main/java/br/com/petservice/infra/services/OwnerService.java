@@ -10,6 +10,7 @@ import br.com.petservice.infra.resource.assembler.OwnerAssembler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,31 @@ public class OwnerService {
                 .map(object -> OwnerEntity.class.cast(object))
                 .map(entity -> entity.toOwnerFromEntity()).
                 collect(Collectors.toList());
+    }
+
+    public OwnerDTO updateById(Long id, OwnerDTO ownerDTO) {
+        Owner updatedOwner = ownerRepository.findById(id);
+        updateOwnerData(updatedOwner, ownerDTO);
+        return null;
+    }
+
+    private void updateOwnerData(Owner updatedOwner, OwnerDTO ownerDTO) {
+        updatedOwner.setName(ownerDTO.ownerName());
+        updatedOwner.setMainPhone(ownerDTO.mainPhone());
+        updatedOwner.setEmergencyPhone(ownerDTO.emergencyPhone());
+
+        updatedOwner.getAddress().setStreet(ownerDTO.street());
+        updatedOwner.getAddress().setDistrict(ownerDTO.district());
+        updatedOwner.getAddress().setHouseNumber(ownerDTO.houseNumber());
+
+        updatedOwner.getPet().setName(ownerDTO.petName());
+        updatedOwner.getPet().setBreed(ownerDTO.breed());
+        updatedOwner.getPet().setDailyTimesToEat(ownerDTO.dailyTimesToEat());
+        updatedOwner.getPet().setTimeToEat(ownerDTO.timeToEat()
+                .stream()
+                .map(time -> LocalTime.parse(time))
+                .collect(Collectors.toList()));
+        updatedOwner.getPet().setObservation(ownerDTO.observation());
     }
 
 
