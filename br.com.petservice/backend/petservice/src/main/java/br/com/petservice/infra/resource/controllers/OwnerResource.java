@@ -33,4 +33,11 @@ public class OwnerResource {
 
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable(value = "id") Long id) {
+
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
