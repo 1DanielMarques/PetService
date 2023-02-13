@@ -20,4 +20,9 @@ public class PetRepositoryImpl implements ObjectRepository {
         repository.deleteById(id);
     }
 
+    @Override
+    public Object update(Object object) {
+        return null;
+    }
+
 }

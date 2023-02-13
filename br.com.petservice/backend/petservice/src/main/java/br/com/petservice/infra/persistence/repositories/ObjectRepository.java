@@ -6,5 +6,7 @@ public interface ObjectRepository {
 
     void delete(Long id);
 
+    Object update(Object object);
+
 
 }

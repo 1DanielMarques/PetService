@@ -18,9 +18,15 @@ public class OwnerRepositoryImpl implements ObjectRepository {
         return repository.save(OwnerEntity.createFromOwner((Owner) owner)).toOwnerFromOwner((Owner) owner);
     }
 
+
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Owner update(Object owner) {
+        return null;
     }
 
     public List<Object> findAll() {

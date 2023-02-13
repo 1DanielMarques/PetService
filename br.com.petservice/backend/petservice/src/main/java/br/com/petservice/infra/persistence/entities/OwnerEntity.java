@@ -48,7 +48,7 @@ public class OwnerEntity implements Serializable {
     private PetEntity pet;
 
     public static OwnerEntity createFromOwner(Owner owner) {
-        return new OwnerEntity(null, owner.getName(), owner.getMainPhone(), owner.getEmergencyPhone(), AddressEntity.crateFromAddress(owner.getAddress()), PetEntity.createFromPet(owner.getPet()));
+        return new OwnerEntity(owner.getId(), owner.getName(), owner.getMainPhone(), owner.getEmergencyPhone(), AddressEntity.crateFromAddress(owner.getAddress()), PetEntity.createFromPet(owner.getPet()));
     }
 
     public Owner toOwnerFromOwner(Owner owner) {
@@ -72,5 +72,6 @@ public class OwnerEntity implements Serializable {
         owner.setAddress(this.getAddress().toAddressFromEntity());
         owner.setPet(this.getPet().toPetFromEntity());
     }
+
 
 }

@@ -64,7 +64,10 @@ public class OwnerService {
     public OwnerDTO updateById(Long id, OwnerDTO ownerDTO) {
         Owner updatedOwner = ownerRepository.findById(id);
         updateOwnerData(updatedOwner, ownerDTO);
-        return null;
+        addressRepository.save(updatedOwner.getAddress());
+        petRepository.save(updatedOwner.getPet());
+        ownerRepository.save(updatedOwner);
+        return assembler.toOwnerDTO(updatedOwner);
     }
 
     private void updateOwnerData(Owner updatedOwner, OwnerDTO ownerDTO) {
