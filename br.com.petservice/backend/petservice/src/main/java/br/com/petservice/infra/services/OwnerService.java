@@ -7,11 +7,13 @@ import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
 import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
 import br.com.petservice.infra.persistence.repositories.PetRepositoryImpl;
 import br.com.petservice.infra.resource.assembler.OwnerAssembler;
+import br.com.petservice.infra.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,7 +51,11 @@ public class OwnerService {
     }
 
     public OwnerDTO findById(Long id) {
-        return assembler.toOwnerDTO(ownerRepository.findById(id));
+        try {
+            return assembler.toOwnerDTO(ownerRepository.findById(id));
+        } catch (NoSuchElementException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
 
@@ -62,12 +68,17 @@ public class OwnerService {
     }
 
     public OwnerDTO updateById(Long id, OwnerDTO ownerDTO) {
-        Owner updatedOwner = ownerRepository.findById(id);
-        updateOwnerData(updatedOwner, ownerDTO);
-        addressRepository.save(updatedOwner.getAddress());
-        petRepository.save(updatedOwner.getPet());
-        ownerRepository.save(updatedOwner);
-        return assembler.toOwnerDTO(updatedOwner);
+        try {
+            Owner updatedOwner = ownerRepository.findById(id);
+            updateOwnerData(updatedOwner, ownerDTO);
+            addressRepository.save(updatedOwner.getAddress());
+            petRepository.save(updatedOwner.getPet());
+            ownerRepository.save(updatedOwner);
+            return assembler.toOwnerDTO(updatedOwner);
+        } catch (NoSuchElementException e) {
+            throw new ResourceNotFoundException(id);
+        }
+
     }
 
     private void updateOwnerData(Owner updatedOwner, OwnerDTO ownerDTO) {
@@ -91,11 +102,15 @@ public class OwnerService {
 
 
     public void deleteById(Long id) {
-        Long petId = ownerRepository.findById(id).getPet().getId();
-        Long addressId = ownerRepository.findById(id).getAddress().getId();
-        ownerRepository.delete(id);
-        petRepository.delete(petId);
-        addressRepository.delete(addressId);
+        try {
+            Long petId = ownerRepository.findById(id).getPet().getId();
+            Long addressId = ownerRepository.findById(id).getAddress().getId();
+            ownerRepository.delete(id);
+            petRepository.delete(petId);
+            addressRepository.delete(addressId);
+        } catch (NoSuchElementException e) {
+            throw new ResourceNotFoundException(id);
+        }
 
     }
 }
