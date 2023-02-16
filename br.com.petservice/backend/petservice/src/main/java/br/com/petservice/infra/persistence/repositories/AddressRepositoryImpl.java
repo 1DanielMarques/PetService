@@ -20,10 +20,5 @@ public class AddressRepositoryImpl implements ObjectRepository {
         repository.deleteById(id);
     }
 
-    @Override
-    public Object update(Object object) {
-        return null;
-    }
-
 
 }

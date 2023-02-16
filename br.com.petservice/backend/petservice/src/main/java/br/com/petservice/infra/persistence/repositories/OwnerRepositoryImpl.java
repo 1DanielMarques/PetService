@@ -24,10 +24,6 @@ public class OwnerRepositoryImpl implements ObjectRepository {
         repository.deleteById(id);
     }
 
-    @Override
-    public Owner update(Object owner) {
-        return null;
-    }
 
     public List<Object> findAll() {
         return (List) repository.findAll();
