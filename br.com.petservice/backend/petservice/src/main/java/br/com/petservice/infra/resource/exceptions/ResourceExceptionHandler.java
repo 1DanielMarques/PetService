@@ -1,6 +1,8 @@
 package br.com.petservice.infra.resource.exceptions;
 
+import br.com.petservice.infra.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,7 +20,15 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> invalidPhoneLength(MethodArgumentNotValidException e, HttpServletRequest request) {
         String error = "Invalid phone number.";
         HttpStatus status = HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE;
-        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getAllErrors().get(0).getDefaultMessage(), request.getRequestURI());
-        return ResponseEntity.status(status).body(err);
+        StandardError standardError = new StandardError(Instant.now(), status.value(), error, e.getAllErrors().get(0).getDefaultMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+        String error = "Resource not found.";
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError standardError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
     }
 }
