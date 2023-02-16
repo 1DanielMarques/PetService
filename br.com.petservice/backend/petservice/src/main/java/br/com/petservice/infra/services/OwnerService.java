@@ -45,7 +45,7 @@ public class OwnerService {
                         owner.getPet().getName(),
                         owner.getPet().getBreed(),
                         owner.getPet().getDailyTimesToEat(),
-                        owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
+                        owner.getPet().getTimeToEat().stream().map(LocalTime::toString).collect(Collectors.toList()),
                         owner.getPet().getObservation())).collect(Collectors.toList());
         return ownerDTOList;
     }
@@ -63,7 +63,7 @@ public class OwnerService {
         return ownerRepository.findAll()
                 .stream()
                 .map(object -> OwnerEntity.class.cast(object))
-                .map(entity -> entity.toOwnerFromEntity()).
+                .map(OwnerEntity::toOwnerFromEntity).
                 collect(Collectors.toList());
     }
 
@@ -95,7 +95,7 @@ public class OwnerService {
         updatedOwner.getPet().setDailyTimesToEat(ownerDTO.dailyTimesToEat());
         updatedOwner.getPet().setTimeToEat(ownerDTO.timeToEat()
                 .stream()
-                .map(time -> LocalTime.parse(time))
+                .map(LocalTime::parse)
                 .collect(Collectors.toList()));
         updatedOwner.getPet().setObservation(ownerDTO.observation());
     }

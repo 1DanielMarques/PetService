@@ -22,7 +22,7 @@ public class OwnerAssembler {
                 ownerDTO.dailyTimesToEat(),
                 ownerDTO.timeToEat()
                         .stream()
-                        .map(time -> LocalTime.parse(time)).collect(Collectors.toList()),
+                        .map(LocalTime::parse).collect(Collectors.toList()),
                 ownerDTO.observation());
         return new Owner(null, ownerDTO.ownerName(), ownerDTO.mainPhone(), ownerDTO.emergencyPhone(), address, pet);
     }
@@ -38,7 +38,7 @@ public class OwnerAssembler {
                 owner.getPet().getName(),
                 owner.getPet().getBreed(),
                 owner.getPet().getDailyTimesToEat(),
-                owner.getPet().getTimeToEat().stream().map(time -> time.toString()).collect(Collectors.toList()),
+                owner.getPet().getTimeToEat().stream().map(LocalTime::toString).collect(Collectors.toList()),
                 owner.getPet().getObservation()
         );
     }
