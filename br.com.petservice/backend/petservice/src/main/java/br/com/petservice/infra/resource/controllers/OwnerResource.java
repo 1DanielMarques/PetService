@@ -1,7 +1,9 @@
 package br.com.petservice.infra.resource.controllers;
 
+import br.com.petservice.domain.model.Owner;
 import br.com.petservice.infra.dto.OwnerDTO;
-import br.com.petservice.infra.services.OwnerServiceImpl;
+import br.com.petservice.infra.resource.assembler.OwnerAssembler;
+import br.com.petservice.infra.services.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,12 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OwnerResource {
 
-    private final OwnerServiceImpl service;
+    private final OwnerService service;
+    private final OwnerAssembler assembler;
 
     @PostMapping
     ResponseEntity<OwnerDTO> insert(@RequestBody @Validated OwnerDTO requestDTO) {
-        OwnerDTO ownerDTO = service.insert(requestDTO);
-        return ResponseEntity.ok().body(ownerDTO);
+        Owner owner = service.create(assembler.toOwner(requestDTO));
+        return ResponseEntity.ok().body(assembler.toOwnerDTO(owner));
     }
 
     @GetMapping
@@ -41,7 +44,7 @@ public class OwnerResource {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<OwnerDTO> updateById(@PathVariable(value = "id") Long id, @RequestBody @Validated OwnerDTO requestDTO) {
-        OwnerDTO ownerDTO = service.updateById(id,requestDTO);
+        OwnerDTO ownerDTO = service.updateById(id, requestDTO);
         return ResponseEntity.ok().body(ownerDTO);
     }
 

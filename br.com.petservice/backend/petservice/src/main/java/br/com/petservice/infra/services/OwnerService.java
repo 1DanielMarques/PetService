@@ -18,19 +18,19 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OwnerServiceImpl implements CreateOwner, FindOwner, UpdateOwner, DeleteOwner {
+public class OwnerService implements CreateOwner, FindOwner, UpdateOwner, DeleteOwner {
 
     private final OwnerRepositoryImpl ownerRepository;
     private final AddressRepositoryImpl addressRepository;
     private final PetRepositoryImpl petRepository;
     private final OwnerAssembler assembler;
 
-    public OwnerDTO insert(OwnerDTO ownerDTO) {
-        Owner owner = assembler.toOwner(ownerDTO);
+    @Override
+    public Owner create(Owner owner) {
         owner.setAddress(addressRepository.save(owner.getAddress()));
         owner.setPet(petRepository.save(owner.getPet()));
         ownerRepository.save(owner);
-        return assembler.toOwnerDTO(owner);
+        return owner;
     }
 
     public List<OwnerDTO> findAll() {
