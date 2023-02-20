@@ -1,7 +1,7 @@
 package br.com.petservice.infra.resource.controllers;
 
 import br.com.petservice.infra.dto.OwnerDTO;
-import br.com.petservice.infra.services.OwnerService;
+import br.com.petservice.infra.services.OwnerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OwnerResource {
 
-    private final OwnerService service;
+    private final OwnerServiceImpl service;
 
     @PostMapping
     ResponseEntity<OwnerDTO> insert(@RequestBody @Validated OwnerDTO requestDTO) {
