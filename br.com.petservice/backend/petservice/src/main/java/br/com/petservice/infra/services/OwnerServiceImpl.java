@@ -1,6 +1,6 @@
 package br.com.petservice.infra.services;
 
-import br.com.petservice.domain.model.Owner;
+import br.com.petservice.domain.model.*;
 import br.com.petservice.infra.dto.OwnerDTO;
 import br.com.petservice.infra.persistence.entities.OwnerEntity;
 import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OwnerServiceImpl implements OwnerService{
+public class OwnerServiceImpl implements CreateOwner, FindOwner, UpdateOwner, DeleteOwner {
 
     private final OwnerRepositoryImpl ownerRepository;
     private final AddressRepositoryImpl addressRepository;
