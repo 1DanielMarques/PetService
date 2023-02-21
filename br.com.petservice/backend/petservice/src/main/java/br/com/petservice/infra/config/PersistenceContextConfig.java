@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class PersistenceContextConfig {
 
     private final OwnerInMemoryRepository ownerRepository;
-
     private final AddressInMemoryRepository addressRepository;
     private final PetInMemoryRepository petRepository;
 
