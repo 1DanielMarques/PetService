@@ -1,6 +1,10 @@
 package br.com.petservice.infra.resource.controllers;
 
-import br.com.petservice.domain.model.*;
+import br.com.petservice.domain.CreateOwner;
+import br.com.petservice.domain.DeleteOwner;
+import br.com.petservice.domain.FindOwner;
+import br.com.petservice.domain.UpdateOwner;
+import br.com.petservice.domain.model.Owner;
 import br.com.petservice.infra.dto.OwnerDTO;
 import br.com.petservice.infra.resource.assembler.OwnerAssembler;
 import lombok.RequiredArgsConstructor;

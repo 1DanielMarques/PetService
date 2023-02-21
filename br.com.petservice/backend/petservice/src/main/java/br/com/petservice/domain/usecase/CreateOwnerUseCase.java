@@ -1,6 +1,6 @@
-package br.com.petservice.domain.model.usecase;
+package br.com.petservice.domain.usecase;
 
-import br.com.petservice.domain.model.CreateOwner;
+import br.com.petservice.domain.CreateOwner;
 import br.com.petservice.domain.model.Owner;
 import br.com.petservice.infra.persistence.repositories.AddressRepository;
 import br.com.petservice.infra.persistence.repositories.OwnerRepository;

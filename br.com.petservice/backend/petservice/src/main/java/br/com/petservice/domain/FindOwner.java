@@ -1,4 +1,6 @@
-package br.com.petservice.domain.model;
+package br.com.petservice.domain;
+
+import br.com.petservice.domain.model.Owner;
 
 import java.util.List;
 

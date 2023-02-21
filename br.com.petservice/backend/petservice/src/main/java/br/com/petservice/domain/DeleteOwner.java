@@ -1,4 +1,4 @@
-package br.com.petservice.domain.model;
+package br.com.petservice.domain;
 
 public interface DeleteOwner {
 

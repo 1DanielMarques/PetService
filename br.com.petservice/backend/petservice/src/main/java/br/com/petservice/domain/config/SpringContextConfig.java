@@ -1,13 +1,13 @@
-package br.com.petservice.domain.model.config;
+package br.com.petservice.domain.config;
 
-import br.com.petservice.domain.model.CreateOwner;
-import br.com.petservice.domain.model.DeleteOwner;
-import br.com.petservice.domain.model.FindOwner;
-import br.com.petservice.domain.model.UpdateOwner;
-import br.com.petservice.domain.model.usecase.CreateOwnerUseCase;
-import br.com.petservice.domain.model.usecase.DeleteOwnerUseCase;
-import br.com.petservice.domain.model.usecase.FindOwnerUseCase;
-import br.com.petservice.domain.model.usecase.UpdateOwnerUseCase;
+import br.com.petservice.domain.CreateOwner;
+import br.com.petservice.domain.DeleteOwner;
+import br.com.petservice.domain.FindOwner;
+import br.com.petservice.domain.UpdateOwner;
+import br.com.petservice.domain.usecase.CreateOwnerUseCase;
+import br.com.petservice.domain.usecase.DeleteOwnerUseCase;
+import br.com.petservice.domain.usecase.FindOwnerUseCase;
+import br.com.petservice.domain.usecase.UpdateOwnerUseCase;
 import br.com.petservice.infra.persistence.repositories.AddressRepository;
 import br.com.petservice.infra.persistence.repositories.OwnerRepository;
 import br.com.petservice.infra.persistence.repositories.PetRepository;
@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@Import(PersistenceContextConfig.class)
 @RequiredArgsConstructor
 public class SpringContextConfig {
 
@@ -40,7 +39,9 @@ public class SpringContextConfig {
     }
 
     @Bean
-    public UpdateOwner updateOwner(){return new UpdateOwnerUseCase(ownerRepository, addressRepository, petRepository);}
+    public UpdateOwner updateOwner() {
+        return new UpdateOwnerUseCase(ownerRepository, addressRepository, petRepository);
+    }
 
 
 }

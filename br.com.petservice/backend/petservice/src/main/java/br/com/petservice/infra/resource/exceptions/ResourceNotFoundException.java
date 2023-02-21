@@ -1,4 +1,4 @@
-package br.com.petservice.infra.services.exceptions;
+package br.com.petservice.infra.resource.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 
