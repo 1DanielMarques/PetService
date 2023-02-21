@@ -17,10 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/api/owner")
 @RequiredArgsConstructor
 public class OwnerResource {
-
-  //  private final OwnerService service;
     private final CreateOwner createOwner;
-
     private final FindOwner findOwner;
     private final OwnerAssembler assembler;
 
@@ -34,13 +31,13 @@ public class OwnerResource {
     ResponseEntity<List<OwnerDTO>> findAll() {
         return ResponseEntity.ok().body(findOwner.findAll().stream().map(owner -> assembler.toOwnerDTO(owner)).collect(Collectors.toList()));
     }
-/*
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<OwnerDTO> findById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        return ResponseEntity.ok().body(assembler.toOwnerDTO(findOwner.findById(id)));
 
     }
-
+/*
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable(value = "id") Long id) {
         service.deleteById(id);

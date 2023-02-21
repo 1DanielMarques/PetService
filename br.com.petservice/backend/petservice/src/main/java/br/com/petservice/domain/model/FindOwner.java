@@ -5,4 +5,6 @@ import java.util.List;
 public interface FindOwner {
 
     List<Owner> findAll();
+
+    Owner findById(Long id);
 }
