@@ -3,9 +3,11 @@ package br.com.petservice.domain.model.config;
 import br.com.petservice.domain.model.CreateOwner;
 import br.com.petservice.domain.model.DeleteOwner;
 import br.com.petservice.domain.model.FindOwner;
+import br.com.petservice.domain.model.UpdateOwner;
 import br.com.petservice.domain.model.usecase.CreateOwnerUseCase;
 import br.com.petservice.domain.model.usecase.DeleteOwnerUseCase;
 import br.com.petservice.domain.model.usecase.FindOwnerUseCase;
+import br.com.petservice.domain.model.usecase.UpdateOwnerUseCase;
 import br.com.petservice.infra.persistence.repositories.AddressRepository;
 import br.com.petservice.infra.persistence.repositories.OwnerRepository;
 import br.com.petservice.infra.persistence.repositories.PetRepository;
@@ -36,6 +38,9 @@ public class SpringContextConfig {
     public DeleteOwner deleteOwner() {
         return new DeleteOwnerUseCase(ownerRepository, addressRepository, petRepository);
     }
+
+    @Bean
+    public UpdateOwner updateOwner(){return new UpdateOwnerUseCase(ownerRepository, addressRepository, petRepository);}
 
 
 }

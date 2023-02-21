@@ -17,7 +17,7 @@ public class DeleteOwnerUseCase implements DeleteOwner {
     private final PetRepository petRepository;
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         try {
             Long petId = ownerRepository.findById(id).getPet().getId();
             Long addressId = ownerRepository.findById(id).getAddress().getId();
