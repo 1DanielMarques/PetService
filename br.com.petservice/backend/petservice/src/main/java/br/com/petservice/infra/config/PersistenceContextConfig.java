@@ -1,8 +1,6 @@
 package br.com.petservice.infra.config;
 
-import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
-import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
-import br.com.petservice.infra.persistence.repositories.PetRepositoryImpl;
+import br.com.petservice.infra.persistence.repositories.*;
 import br.com.petservice.infra.persistence.repositories.inMemory.AddressInMemoryRepository;
 import br.com.petservice.infra.persistence.repositories.inMemory.OwnerInMemoryRepository;
 import br.com.petservice.infra.persistence.repositories.inMemory.PetInMemoryRepository;
@@ -12,25 +10,25 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class SpringContextConfig {
+public class PersistenceContextConfig {
 
     private final OwnerInMemoryRepository ownerRepository;
+
     private final AddressInMemoryRepository addressRepository;
     private final PetInMemoryRepository petRepository;
 
     @Bean
-    public OwnerRepositoryImpl ownerRepository() {
+    public OwnerRepository ownerRepository() {
         return new OwnerRepositoryImpl(ownerRepository);
     }
 
     @Bean
-    public AddressRepositoryImpl addressRepository() {
+    public AddressRepository addressRepository() {
         return new AddressRepositoryImpl(addressRepository);
     }
 
     @Bean
-    public PetRepositoryImpl petRepository() {
+    public PetRepository petRepository() {
         return new PetRepositoryImpl(petRepository);
     }
-
 }

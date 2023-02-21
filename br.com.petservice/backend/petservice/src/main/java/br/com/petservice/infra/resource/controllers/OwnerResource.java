@@ -1,35 +1,40 @@
 package br.com.petservice.infra.resource.controllers;
 
+import br.com.petservice.domain.model.CreateOwner;
+import br.com.petservice.domain.model.FindOwner;
 import br.com.petservice.domain.model.Owner;
 import br.com.petservice.infra.dto.OwnerDTO;
 import br.com.petservice.infra.resource.assembler.OwnerAssembler;
-import br.com.petservice.infra.services.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/owner")
 @RequiredArgsConstructor
 public class OwnerResource {
 
-    private final OwnerService service;
+  //  private final OwnerService service;
+    private final CreateOwner createOwner;
+
+    private final FindOwner findOwner;
     private final OwnerAssembler assembler;
 
     @PostMapping
     ResponseEntity<OwnerDTO> insert(@RequestBody @Validated OwnerDTO requestDTO) {
-        Owner owner = service.create(assembler.toOwner(requestDTO));
+        Owner owner = createOwner.create(assembler.toOwner(requestDTO));
         return ResponseEntity.ok().body(assembler.toOwnerDTO(owner));
     }
 
     @GetMapping
     ResponseEntity<List<OwnerDTO>> findAll() {
-        return ResponseEntity.ok().body(service.findAll());
+        return ResponseEntity.ok().body(findOwner.findAll().stream().map(owner -> assembler.toOwnerDTO(owner)).collect(Collectors.toList()));
     }
-
+/*
     @GetMapping(value = "/{id}")
     public ResponseEntity<OwnerDTO> findById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok().body(service.findById(id));
@@ -47,6 +52,6 @@ public class OwnerResource {
         OwnerDTO ownerDTO = service.updateById(id, requestDTO);
         return ResponseEntity.ok().body(ownerDTO);
     }
-
+*/
 
 }

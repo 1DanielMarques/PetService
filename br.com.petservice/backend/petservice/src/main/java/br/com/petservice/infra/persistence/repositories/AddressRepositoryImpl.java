@@ -6,12 +6,12 @@ import br.com.petservice.infra.persistence.repositories.inMemory.AddressInMemory
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AddressRepositoryImpl implements ObjectRepository {
+public class AddressRepositoryImpl implements AddressRepository {
 
     private final AddressInMemoryRepository repository;
 
     @Override
-    public Address save(Object address) {
+    public Address save(Address address) {
         return repository.save(AddressEntity.crateFromAddress((Address) address)).toAddressFromAddress((Address) address);
     }
 

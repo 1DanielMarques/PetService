@@ -1,31 +1,15 @@
 package br.com.petservice.infra.services;
 
-import br.com.petservice.domain.model.*;
-import br.com.petservice.infra.dto.OwnerDTO;
-import br.com.petservice.infra.persistence.entities.OwnerEntity;
-import br.com.petservice.infra.persistence.repositories.AddressRepositoryImpl;
-import br.com.petservice.infra.persistence.repositories.OwnerRepositoryImpl;
-import br.com.petservice.infra.persistence.repositories.PetRepositoryImpl;
-import br.com.petservice.infra.resource.assembler.OwnerAssembler;
-import br.com.petservice.infra.services.exceptions.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalTime;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-
-@Service
+/*@Service
 @RequiredArgsConstructor
-public class OwnerService implements CreateOwner, FindOwner, UpdateOwner, DeleteOwner {
+public class OwnerService implements FindOwner, UpdateOwner, DeleteOwner {
 
     private final OwnerRepositoryImpl ownerRepository;
     private final AddressRepositoryImpl addressRepository;
     private final PetRepositoryImpl petRepository;
     private final OwnerAssembler assembler;
 
-    @Override
+
     public Owner create(Owner owner) {
         owner.setAddress(addressRepository.save(owner.getAddress()));
         owner.setPet(petRepository.save(owner.getPet()));
@@ -113,4 +97,4 @@ public class OwnerService implements CreateOwner, FindOwner, UpdateOwner, Delete
         }
 
     }
-}
+}*/

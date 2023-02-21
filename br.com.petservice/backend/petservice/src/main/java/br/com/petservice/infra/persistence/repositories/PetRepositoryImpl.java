@@ -6,12 +6,12 @@ import br.com.petservice.infra.persistence.repositories.inMemory.PetInMemoryRepo
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class PetRepositoryImpl implements ObjectRepository {
+public class PetRepositoryImpl implements PetRepository {
 
     private final PetInMemoryRepository repository;
 
     @Override
-    public Pet save(Object pet) {
+    public Pet save(Pet pet) {
         return repository.save(PetEntity.createFromPet((Pet) pet)).toPetFromPet((Pet) pet);
     }
 

@@ -6,15 +6,16 @@ import br.com.petservice.infra.persistence.repositories.inMemory.OwnerInMemoryRe
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
-public class OwnerRepositoryImpl implements ObjectRepository {
+public class OwnerRepositoryImpl implements OwnerRepository {
 
     private final OwnerInMemoryRepository repository;
 
     @Override
-    public Owner save(Object owner) {
+    public Owner save(Owner owner) {
         return repository.save(OwnerEntity.createFromOwner((Owner) owner)).toOwnerFromOwner((Owner) owner);
     }
 
@@ -24,11 +25,12 @@ public class OwnerRepositoryImpl implements ObjectRepository {
         repository.deleteById(id);
     }
 
-
-    public List<Object> findAll() {
-        return (List) repository.findAll();
+    @Override
+    public List<Owner> findAll() {
+        return  repository.findAll().stream().map(OwnerEntity::toOwnerFromEntity).collect(Collectors.toList());
     }
 
+    @Override
     public Owner findById(Long id) {
         return repository.findById(id).get().toOwnerFromEntity();
     }
