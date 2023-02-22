@@ -2,9 +2,7 @@ package br.com.petservice.domain.usecase;
 
 import br.com.petservice.domain.UpdateOwner;
 import br.com.petservice.domain.model.Owner;
-import br.com.petservice.infra.persistence.repositories.AddressRepository;
 import br.com.petservice.infra.persistence.repositories.OwnerRepository;
-import br.com.petservice.infra.persistence.repositories.PetRepository;
 import br.com.petservice.infra.resource.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -13,16 +11,14 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UpdateOwnerUseCase implements UpdateOwner {
     private final OwnerRepository ownerRepository;
-    private final AddressRepository addressRepository;
-    private final PetRepository petRepository;
 
     @Override
     public Owner updateById(Long id, Owner updatedOwner) {
         try {
             Owner ownerToUpdate = ownerRepository.findById(id);
             updateOwnerData(ownerToUpdate, updatedOwner);
-            addressRepository.save(ownerToUpdate.getAddress());
-            petRepository.save(ownerToUpdate.getPet());
+          /*  addressRepository.save(ownerToUpdate.getAddress());
+            petRepository.save(ownerToUpdate.getPet()); */
             ownerRepository.save(ownerToUpdate);
             return ownerToUpdate;
         } catch (NoSuchElementException e) {

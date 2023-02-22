@@ -8,9 +8,7 @@ import br.com.petservice.domain.usecase.CreateOwnerUseCase;
 import br.com.petservice.domain.usecase.DeleteOwnerUseCase;
 import br.com.petservice.domain.usecase.FindOwnerUseCase;
 import br.com.petservice.domain.usecase.UpdateOwnerUseCase;
-import br.com.petservice.infra.persistence.repositories.AddressRepository;
 import br.com.petservice.infra.persistence.repositories.OwnerRepository;
-import br.com.petservice.infra.persistence.repositories.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +18,10 @@ import org.springframework.context.annotation.Configuration;
 public class SpringContextConfig {
 
     private final OwnerRepository ownerRepository;
-    private final AddressRepository addressRepository;
-    private final PetRepository petRepository;
 
     @Bean
     public CreateOwner createOwner() {
-        return new CreateOwnerUseCase(ownerRepository, addressRepository, petRepository);
+        return new CreateOwnerUseCase(ownerRepository);
     }
 
     @Bean
@@ -35,12 +31,12 @@ public class SpringContextConfig {
 
     @Bean
     public DeleteOwner deleteOwner() {
-        return new DeleteOwnerUseCase(ownerRepository, addressRepository, petRepository);
+        return new DeleteOwnerUseCase(ownerRepository);
     }
 
     @Bean
     public UpdateOwner updateOwner() {
-        return new UpdateOwnerUseCase(ownerRepository, addressRepository, petRepository);
+        return new UpdateOwnerUseCase(ownerRepository);
     }
 
 

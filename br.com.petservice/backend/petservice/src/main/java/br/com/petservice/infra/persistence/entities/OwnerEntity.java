@@ -37,12 +37,12 @@ public class OwnerEntity implements Serializable {
     @Setter
     private String emergencyPhone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @Getter
     @Setter
     private AddressEntity address;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @Getter
     @Setter
     private PetEntity pet;
