@@ -12,7 +12,7 @@ public class PetRepositoryImpl implements PetRepository {
 
     @Override
     public Pet save(Pet pet) {
-        return repository.save(PetEntity.createFromPet((Pet) pet)).toPetFromPet((Pet) pet);
+        return repository.save(PetEntity.createFromPet(pet)).toPetFromPet(pet);
     }
 
     @Override

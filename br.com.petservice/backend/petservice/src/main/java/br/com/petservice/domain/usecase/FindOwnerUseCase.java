@@ -13,9 +13,10 @@ import java.util.NoSuchElementException;
 public class FindOwnerUseCase implements FindOwner {
 
     private final OwnerRepository ownerRepository;
+
     @Override
     public List<Owner> findAll() {
-    return ownerRepository.findAll();
+        return ownerRepository.findAll();
     }
 
     @Override

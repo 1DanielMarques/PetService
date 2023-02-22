@@ -4,9 +4,7 @@ package br.com.petservice;
 import br.com.petservice.infra.persistence.entities.AddressEntity;
 import br.com.petservice.infra.persistence.entities.OwnerEntity;
 import br.com.petservice.infra.persistence.entities.PetEntity;
-import br.com.petservice.infra.persistence.repositories.inMemory.AddressInMemoryRepository;
 import br.com.petservice.infra.persistence.repositories.inMemory.OwnerInMemoryRepository;
-import br.com.petservice.infra.persistence.repositories.inMemory.PetInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +16,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class Initialization implements CommandLineRunner {
 
-    private final AddressInMemoryRepository addressRepository;
     private final OwnerInMemoryRepository ownerRepository;
-    private final PetInMemoryRepository petRepository;
 
     @Override
     public void run(String... args) throws Exception {

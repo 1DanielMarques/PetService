@@ -16,7 +16,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
     @Override
     public Owner save(Owner owner) {
-        return repository.save(OwnerEntity.createFromOwner((Owner) owner)).toOwnerFromOwner((Owner) owner);
+        return repository.save(OwnerEntity.createFromOwner(owner)).toOwnerFromOwner(owner);
     }
 
 
@@ -27,7 +27,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
     @Override
     public List<Owner> findAll() {
-        return  repository.findAll().stream().map(OwnerEntity::toOwnerFromEntity).collect(Collectors.toList());
+        return repository.findAll().stream().map(OwnerEntity::toOwnerFromEntity).collect(Collectors.toList());
     }
 
     @Override

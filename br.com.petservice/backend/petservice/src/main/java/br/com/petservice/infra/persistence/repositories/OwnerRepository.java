@@ -7,8 +7,11 @@ import java.util.List;
 public interface OwnerRepository {
 
     Owner save(Owner owner);
+
     void delete(Long id);
+
     List<Owner> findAll();
+
     Owner findById(Long id);
 
 }

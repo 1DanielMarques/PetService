@@ -12,7 +12,7 @@ public class AddressRepositoryImpl implements AddressRepository {
 
     @Override
     public Address save(Address address) {
-        return repository.save(AddressEntity.crateFromAddress((Address) address)).toAddressFromAddress((Address) address);
+        return repository.save(AddressEntity.crateFromAddress(address)).toAddressFromAddress(address);
     }
 
     @Override
