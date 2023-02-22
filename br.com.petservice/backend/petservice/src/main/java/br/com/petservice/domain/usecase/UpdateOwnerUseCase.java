@@ -17,8 +17,6 @@ public class UpdateOwnerUseCase implements UpdateOwner {
         try {
             Owner ownerToUpdate = ownerRepository.findById(id);
             updateOwnerData(ownerToUpdate, updatedOwner);
-          /*  addressRepository.save(ownerToUpdate.getAddress());
-            petRepository.save(ownerToUpdate.getPet()); */
             ownerRepository.save(ownerToUpdate);
             return ownerToUpdate;
         } catch (NoSuchElementException e) {
